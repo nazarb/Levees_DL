@@ -19,7 +19,7 @@ The detailed workflow is described in the publication. A brief description of th
 ### Train the model
 #### Pre-processing
 *The code used in this stage is available using following [link](https://github.com/nazarb/2025_levees_DL/tree/main/Dataset)*
-- **A** - raster data - Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/Dataset_creation_GEE_code)
+- **A** - raster data - Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/2025_levees_DL/blob/main/Pre_processing/Dataset_creation_GEE_code)
 - **B** - annotations - Rasterize the levee network created for the purpose of this work available in https://doi.org/10.58132/MGOHM8. Clip and adjust pixels in A and B.
 - Create tiles using A and B
 - Perform augmentations using [albumentations](https://github.com/albumentations-team/albumentations)
