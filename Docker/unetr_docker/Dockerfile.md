@@ -40,7 +40,7 @@ CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-r
 
 ```
 ## Instructions
-1. Create a folder inside your machine and chenge directory into it:
+1. Create a folder inside your machine and change directory into it:
 ```
 mkdir unetr_docker
 cd unetr docker
