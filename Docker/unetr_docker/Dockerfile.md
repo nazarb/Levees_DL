@@ -1,7 +1,7 @@
 # Docker file
 
 The Docker file, which is accesible [here](https://github.com/nazarb/2025_levees_DL/blob/6e94ac25a49c68b2f58430cddac4cc31ffecbcb3/Docker/unetr_docker/Dockerfile) is created using the following code:
-change
+
 
 ```
 # Use the NVIDIA CUDA base image
