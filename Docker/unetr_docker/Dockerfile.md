@@ -1,5 +1,11 @@
 # Docker file
 
+The Docker file is suitable to train the model, validate and predict using GPU in own local machine. It utilizes the Jupyter notebook library run from Docker container
+
+It was tested on:
+- Ubuntu 24.04.1 LTS (GNU/Linux 5.15.146.1-microsoft-standard-WSL2 x86_64) installed on WSL on Windows
+- Ubuntu 24.04.1 installed on Proxmox as virtual machine
+
 The Docker file, which is accesible [here](https://github.com/nazarb/2025_levees_DL/blob/6e94ac25a49c68b2f58430cddac4cc31ffecbcb3/Docker/unetr_docker/Dockerfile) is created using the following code:
 
 
