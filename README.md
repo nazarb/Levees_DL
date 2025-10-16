@@ -12,6 +12,8 @@ Results demonstrate that Swin UNETR consistently outperformed other models, part
 The results highlight both the challenges and promise of deep learning in archaeological remote sensing. Automated predictions cannot yet replace interpretative digitisation, but they provide reproducible, standardised, and scalable outputs that can accelerate archaeological mapping and support regional-scale analysis. By leveraging multitemporal, multisource datasets and advanced AI architectures, this study demonstrates a pathway towards reconstructing irrigation systems of different historical periods and landscapes. The approach opens new possibilities for documenting, preserving, and interpreting water-management legacies in some of the world’s most significant ancient landscapes. 
 
 
+## Docker
+The docker used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md)
 ## Workflow
 
 The detailed workflow is described in the publication. A brief description of the procedure can be descibed as follows:
