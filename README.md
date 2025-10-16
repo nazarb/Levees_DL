@@ -18,7 +18,9 @@ The docker used to run all the scripts is available [here](https://github.com/na
 ## Workflow
 ### Pre-processing
 - Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/dataset.md)
-- Create annotations - Rasterize the levee network created for the purpose of this work available in https://doi.org/10.58132/MGOHM8. Clip and adjust pixels in A and B.
+- Create annotations
+- 	Rasterize the levee network created for the purpose of this work available in https://doi.org/10.58132/MGOHM8.
+- 	Clip and adjust pixels in A and B.
 - Devide the images and annotations into tiles of 96x96 pixels - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/2.%20Split%20into%20tiles.ipynb)
 - Perform augmentations using [albumentations](https://github.com/albumentations-team/albumentations) - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/4.%20Albumentations/augmentation.md)
 - Create JSON file with structure of the dataset - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/3.%20Create%20a%20structure%20of%20the%20dataset%20in%20JSON.ipynb)
