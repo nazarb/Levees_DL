@@ -14,20 +14,14 @@ The results highlight both the challenges and promise of deep learning in archae
 
 ## Docker
 The docker used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md)
+
 ## Workflow
-
-The detailed workflow is described in the publication. A brief description of the procedure can be descibed as follows:
-
-### Dataset
-The description of the dataset and the Google Earth Engine code used to calculated it is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/dataset.md)
 ### Pre-processing
-
-- **A** - raster data - Calculate the multisource rasters using published Google Earth Engine [link](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/Dataset_creation_GEE_code)
-- **B** - annotations - Rasterize the levee network created for the purpose of this work available in https://doi.org/10.58132/MGOHM8. Clip and adjust pixels in A and B.
-- Create tiles using A and B
-- Perform augmentations using [albumentations](https://github.com/albumentations-team/albumentations)
-- Create JSON file with structure of the dataset
-
+- Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/dataset.md)
+- Create annotations - Rasterize the levee network created for the purpose of this work available in https://doi.org/10.58132/MGOHM8. Clip and adjust pixels in A and B.
+- Devide the images and annotations into tiles of 96x96 pixels - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/2.%20Split%20into%20tiles.ipynb)
+- Perform augmentations using [albumentations](https://github.com/albumentations-team/albumentations) - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/4.%20Albumentations/augmentation.md)
+- Create JSON file with structure of the dataset - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/3.%20Create%20a%20structure%20of%20the%20dataset%20in%20JSON.ipynb)
 
 #### Train and validate the model 
 
