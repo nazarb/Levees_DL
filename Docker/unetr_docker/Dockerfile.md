@@ -52,7 +52,7 @@ mkdir unetr_docker
 cd unetr docker
 nano Dockerfile
 ```
-2. Copy the content of the Dockerfile in Nano (Linux) and save the file.
+2. Copy the content of the Dockerfile in Nano (Linux) and save the file, or copy the  [file](https://github.com/nazarb/2025_levees_DL/blob/6e94ac25a49c68b2f58430cddac4cc31ffecbcb3/Docker/unetr_docker/Dockerfile) to your location
 3. Build the Docker using the following command:
 ```
 sudo docker build -t Dockerfile_yolo_sam .
@@ -63,9 +63,15 @@ sudo docker run --gpus all -it --name unetr -v /home/{user}/Workspace:/Workspace
 ```
 6. Other comments
 - Use sudo if necessary
-- Adjust port numbers and locatiion
+- Adjust port numbers and location
 
 ```
 sudo docker start unetr
 sudo docker
 ```
+## Libraries used to create the dataset
+
+```
+
+```
+
