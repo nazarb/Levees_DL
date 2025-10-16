@@ -23,9 +23,14 @@ The docker used to run all the scripts is available [here](https://github.com/na
 	2. Clip
 	3. Adjust pixels in multisource raster and annotations
 3. Devide the images and annotations into tiles of 96x96 pixels - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/2.%20Split%20into%20tiles.ipynb)
-4. Perform augmentations using [albumentations](https://github.com/albumentations-team/albumentations) - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/4.%20Albumentations/augmentation.md)
-5. Create JSON file with structure of the dataset - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/3.%20Create%20a%20structure%20of%20the%20dataset%20in%20JSON.ipynb)
-
+4. Create JSON file with structure of the dataset
+	1. Create JSON for one or all rasters - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/3.%20Create%20a%20structure%20of%20the%20dataset%20in%20JSON.ipynb)
+	2. Merge JSON files if necessary - [code](https://github.com/nazarb/2025_levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4B1.%20JSON%20merge.ipynb)
+6. Perform augmentations using [albumentations](https://github.com/albumentations-team/albumentations) - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/4.%20Albumentations/augmentation.md)
+7. Create an augmented dataset
+   1. Append augmented [tiles](https://github.com/nazarb/2025_levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4B2.%20JSON%20append%20augmented.ipynb) to a JSON file 
+   2. Shuffle the tiles within collections used to train, validate and test the model (with a data leakage prevention mechanism) - [code](https://github.com/nazarb/2025_levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4C.%20JSON%20shuffle.ipynb)
+   3. Check if the dataset does not have data leakage between train, validation and testing - [code](https://github.com/nazarb/2025_levees_DL/blob/main/Pre_processing/4.%20Albumentations/4D.%20JSON_checker.ipynb)
 #### Train and validate the model 
 
 The research utilizes the Unet, Attention Unet and Swin UNETR developed by [MONAI](https://github.com/Project-MONAI/MONAI)*
