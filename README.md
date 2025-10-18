@@ -25,9 +25,6 @@ The results highlight both the challenges and promise of deep learning in archae
 The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Setup.md).
 More information how to install [Docker](https://docs.docker.com/engine/install/) is provided on the Docker website.
 
-   
-## Workflow
-
 ### Pre-processing
 The project constisted of two steps. First step was to develop a Deep Learning dataset, which was developed gradually. The final version of the dataset consisted of 20GB. The final steps was the development of the deep learning model.
 
