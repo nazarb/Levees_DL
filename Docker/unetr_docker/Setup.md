@@ -1,3 +1,16 @@
+# Libraries used to create the dataset
+
+The dataset has been created independently from the main workflow line using separate virtual environment in Anaconda utilising Python 3.9
+
+
+```
+conda create --name tiles gdal python==3.9
+pip install geotile
+pip install albumentations
+pip install jupyter
+```
+
+
 # Docker file
 
 The Docker file is suitable to train the model, validate and predict using GPU in own local machine. It utilizes the Jupyter notebook library run from Docker container
@@ -5,6 +18,19 @@ The Docker file is suitable to train the model, validate and predict using GPU i
 It was tested on:
 - Ubuntu 24.04.1 LTS (GNU/Linux 5.15.146.1-microsoft-standard-WSL2 x86_64) installed on WSL on Windows
 - Ubuntu 24.04.1 installed on Proxmox as virtual machine
+
+## Instructions
+- Clone the repository
+```
+git clone https://github.com/nazarb/2025_levees_DL.git
+cd 2025_levees_DL
+cd Docker\unetr_docker
+sudo docker build -t unetr .
+sudo docker run --gpus all -it --name unetr -v /home/{user}/Workspace:/Workspace -p 8888:8888 -p 9453:9453 --shm-size=32g unetr
+```
+You must change the location of the Workspace on your local machine ({user}).
+
+### Libraries used in the Docker container
 
 The Docker file, which is accesible [here](https://github.com/nazarb/2025_levees_DL/blob/6e94ac25a49c68b2f58430cddac4cc31ffecbcb3/Docker/unetr_docker/Dockerfile) is created using the following code:
 
@@ -69,15 +95,3 @@ sudo docker run --gpus all -it --name unetr -v /home/{user}/Workspace:/Workspace
 sudo docker start unetr
 sudo docker
 ```
-## Libraries used to create the dataset
-
-The dataset has been created independently from the main workflow line using separate virtual environment in Anaconda utilising Python 3.9
-
-
-```
-conda create --name tiles gdal python==3.9
-pip install geotile
-pip install albumentations
-pip install jupyter
-```
-
