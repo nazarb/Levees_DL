@@ -55,7 +55,7 @@ nano Dockerfile
 2. Copy the content of the Dockerfile in Nano (Linux) and save the file, or copy the  [file](https://github.com/nazarb/2025_levees_DL/blob/6e94ac25a49c68b2f58430cddac4cc31ffecbcb3/Docker/unetr_docker/Dockerfile) to your location
 3. Build the Docker using the following command:
 ```
-sudo docker build -t Dockerfile_yolo_sam .
+sudo docker build -t unetr .
 ```
 5. Run the Docker container (change the {user} and entire folder location for your machine)
 ```
