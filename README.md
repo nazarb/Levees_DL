@@ -27,7 +27,7 @@ git clone https://github.com/nazarb/2025_levees_DL.git
 cd 2025_levees_DL
 cd Docker\unetr_docker
 ```
-Install [Docker] (https://docs.docker.com/engine/install/) on your local machine
+Install [Docker](https://docs.docker.com/engine/install/) on your local machine
 
 The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md)
    
