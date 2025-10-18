@@ -15,8 +15,7 @@ The results highlight both the challenges and promise of deep learning in archae
 ## Docker
 The docker used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md)
 
-##
-Demo of the model include:
+## Demo of the model include:
 1. Initiate libraries
 2. Download raw data (utilize [Copernicus GLO30](https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM) and the trained [model](https://danebadawcze.uw.edu.pl/file.xhtml?fileId=17758&version=1.0)
 3. Predict the the levees using Swin UNETR model
@@ -38,20 +37,19 @@ Demo of the model include:
    1. Append augmented [tiles](https://github.com/nazarb/2025_levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4B2.%20JSON%20append%20augmented.ipynb) to a JSON file 
    2. Shuffle the tiles within collections used to train, validate and test the model (with a data leakage prevention mechanism) - [code](https://github.com/nazarb/2025_levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4C.%20JSON%20shuffle.ipynb)
    3. Check if the dataset does not have data leakage between train, validation and testing - [code](https://github.com/nazarb/2025_levees_DL/blob/main/Pre_processing/4.%20Albumentations/4D.%20JSON_checker.ipynb)
-#### Train and validate the model 
-
-The research utilizes the Unet, Attention Unet and Swin UNETR developed by [MONAI](https://github.com/Project-MONAI/MONAI)*
-
-The final version of the Swin UNETR model is available [here](https://github.com/nazarb/2025_levees_DL/tree/main/Swin_UNETR)
-
-
-*The selection phase of the training included separate sets od code for training Unet, Attention Unet and Swin UNETR models*
+### Train and validate the model 
+The research utilizes the Unet, Attention Unet and Swin UNETR developed by [MONAI](https://github.com/Project-MONAI/MONAI)
+#### Model selection part
+The selection phase of the training included separate sets od code for training Unet, Attention Unet and Swin UNETR models
 - Unet [link](https://github.com/nazarb/2025_levees_DL/tree/main/Model)
 - Attention Unet [link](https://github.com/nazarb/2025_levees_DL/tree/main/Model)
 - Swin UNETR  [link](https://github.com/nazarb/2025_levees_DL/tree/main/Model)
 
-  
-#### Predict
+#### The final model
+
+The final version of the Swin UNETR model is available [here](https://github.com/nazarb/2025_levees_DL/tree/main/Swin_UNETR)
+ 
+### Predict
 *The code used in this stage is available using following [link](https://github.com/nazarb/2025_levees_DL/tree/main/Predict)*
 
 The code use for prediction consist of several steps
