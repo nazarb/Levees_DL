@@ -12,21 +12,24 @@ Results demonstrate that Swin UNETR consistently outperformed other models, part
 The results highlight both the challenges and promise of deep learning in archaeological remote sensing. Automated predictions cannot yet replace interpretative digitisation, but they provide reproducible, standardised, and scalable outputs that can accelerate archaeological mapping and support regional-scale analysis. By leveraging multitemporal, multisource datasets and advanced AI architectures, this study demonstrates a pathway towards reconstructing irrigation systems of different historical periods and landscapes. The approach opens new possibilities for documenting, preserving, and interpreting water-management legacies in some of the world’s most significant ancient landscapes. 
 
 
-## Docker
-
-Clone the repository
-```
-git clone https://github.com/nazarb/2025_levees_DL.git
-cd 2025_levees_DL
-```
-
-The docker and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md)
-
 ## Demo of the model include:
 1. Initiate libraries
 2. Download raw data (utilize [Copernicus GLO30](https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM) and the trained [model](https://danebadawcze.uw.edu.pl/file.xhtml?fileId=17758&version=1.0)
 3. Predict the the levees using Swin UNETR model
 4. Postprocessing
+   
+## Full project workflow
+
+### Docker
+Clone the repository
+```
+git clone https://github.com/nazarb/2025_levees_DL.git
+cd 2025_levees_DL
+cd Docker\unetr_docker
+```
+Install [Docker] (https://docs.docker.com/engine/install/) on your local machine
+
+The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md)
    
 ## Workflow
 
