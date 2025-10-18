@@ -66,8 +66,8 @@ The [code](https://github.com/nazarb/2025_levees_DL/tree/main/Predict) use for p
     
 ### Post-processing
 3. Post-processing [code](https://github.com/nazarb/2025_levees_DL/blob/main/Post_processing/Post-processing.ipynb) include:
-	1. Filter by size (the filter excludes small features) - opencv-python (connectedComponentsWithStats())(min_area = 350; connectivity=8)
-	2. Closing - opencv-python (Closing)(kernel = 7x7)
+	1. Filter by size (the filter excludes small features) - opencv-python ```connectedComponentsWithStats(); min_area = 350; connectivity=8```
+	2. Closing - opencv-python ```Closing; kernel = 7x7```
 
 
 ## Citation
