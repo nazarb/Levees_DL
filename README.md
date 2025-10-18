@@ -61,10 +61,14 @@ The selection phase of the training included separate sets od code for training 
 - [Swin UNETR](https://github.com/nazarb/2025_levees_DL/blob/main/Model/Model_selection/MONAI_SWIN_UNETR_N48_aug.ipynb)
 #### The final model
 
-*The final version of the Swin UNETR model is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Swin_UNETR/Swin_UNETR.md)*
+The final version of the model utilized [Swin UNETR](https://github.com/nazarb/2025_levees_DL/blob/main/Swin_UNETR/Swin_UNETR.md)*
 
 ### Train
-*The code used in this stage is available using following [link](https://github.com/nazarb/2025_levees_DL/blob/main/Swin_UNETR/Train.ipynb)*
+The trainig of the model parametres:
+Epochs - 500
+Early Stopping - False
+
+The code used in this stage is available using following [link](https://github.com/nazarb/2025_levees_DL/blob/main/Swin_UNETR/Train.ipynb)*
 
 ### Predict
 The [code](https://github.com/nazarb/2025_levees_DL/tree/main/Predict) use for prediction consist of several steps
