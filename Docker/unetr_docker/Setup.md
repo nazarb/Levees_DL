@@ -20,15 +20,34 @@ It was tested on:
 - Ubuntu 24.04.1 installed on Proxmox as virtual machine
 
 ## Instructions
-- Clone the repository
+1. Clone the repository
 ```
-git clone https://github.com/nazarb/2025_levees_DL.git
+git clone https://github.com/nazarb/2025_levees_DL.
+```
+2. Change directory to Dockerfile
+
+```
 cd 2025_levees_DL
 cd Docker\unetr_docker
+
+```
+3. Build the Docker using the following command:
+```
 sudo docker build -t unetr .
+```
+4. Run the Docker container (change the {user} and entire folder location for your machine)
+```
 sudo docker run --gpus all -it --name unetr -v /home/{user}/Workspace:/Workspace -p 8888:8888 -p 9453:9453 --shm-size=32g unetr
 ```
-You must change the location of the Workspace on your local machine ({user}).
+
+Other comments
+- Use sudo if necessary
+- Adjust port numbers and location
+
+```
+sudo docker start unetr
+sudo docker attach unetr
+```
 
 ### Libraries used in the Docker container
 
@@ -71,27 +90,4 @@ EXPOSE 8888 9453
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
 
 ```
-## Instructions
-1. Create a folder inside your machine and change directory into it:
-```
-mkdir unetr_docker
-cd unetr docker
-nano Dockerfile
-```
-2. Copy the content of the Dockerfile in Nano (Linux) and save the file, or copy the  [file](https://github.com/nazarb/2025_levees_DL/blob/6e94ac25a49c68b2f58430cddac4cc31ffecbcb3/Docker/unetr_docker/Dockerfile) to your location
-3. Build the Docker using the following command:
-```
-sudo docker build -t unetr .
-```
-5. Run the Docker container (change the {user} and entire folder location for your machine)
-```
-sudo docker run --gpus all -it --name unetr -v /home/{user}/Workspace:/Workspace -p 8888:8888 -p 9453:9453 --shm-size=32g unetr
-```
-6. Other comments
-- Use sudo if necessary
-- Adjust port numbers and location
 
-```
-sudo docker start unetr
-sudo docker
-```
