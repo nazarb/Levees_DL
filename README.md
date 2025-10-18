@@ -22,7 +22,7 @@ The results highlight both the challenges and promise of deep learning in archae
 
 ### Docker
 
-The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Setup.md).
+The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Setup/Setup.md).
 More information how to install [Docker](https://docs.docker.com/engine/install/) is provided on the Docker website.
 
 ### Pre-processing
