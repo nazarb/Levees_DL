@@ -84,7 +84,6 @@ The training of the model parametres:
 - Loss function: Dice Loss
 - Initial learning Rate:2e-4
 - Weight Decay: 5e-6
-- Activation function:
 - Scheduler for Learning Rate: True
 ```
     lr_scheduler = ReduceLROnPlateau(
