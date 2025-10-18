@@ -77,6 +77,7 @@ The dataset has been created independently from the main workflow line using sep
 ```
 conda create --name tiles gdal python==3.9
 pip install geotile
-pip install albumentations 
+pip install albumentations
+pip install jupyter
 ```
 
