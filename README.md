@@ -13,6 +13,9 @@ The results highlight both the challenges and promise of deep learning in archae
 
 
 ## Demo of the model include:
+
+[Open demo](https://github.com/nazarb/2025_levees_DL/blob/main/Swin_UNETR_demo.ipynb)
+
 1. Initiate libraries
 2. Download raw data (utilize [Copernicus GLO30](https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM) and the trained [model](https://danebadawcze.uw.edu.pl/file.xhtml?fileId=17758&version=1.0)
 3. Predict the the levees using Swin UNETR model
