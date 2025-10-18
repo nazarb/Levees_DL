@@ -21,23 +21,16 @@ The results highlight both the challenges and promise of deep learning in archae
 ## Full project workflow
 
 ### Docker
-Clone the repository
-```
-git clone https://github.com/nazarb/2025_levees_DL.git
-cd 2025_levees_DL
-cd Docker\unetr_docker
-sudo docker build -t unetr .
-sudo docker run --gpus all -it --name unetr -v /home/{user}/Workspace:/Workspace -p 8888:8888 -p 9453:9453 --shm-size=32g unetr
-```
-You must change the location of the Workspace on your local machine ({user}).
-The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md).
+
+The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Setup.md).
 More information how to install [Docker](https://docs.docker.com/engine/install/) is provided on the Docker website.
 
    
 ## Workflow
 
 ### Pre-processing
-The project constisted of two steps. First step was to develop a Deep Learning dataset. The final version of the dataset consisted of 20GB.
+The project constisted of two steps. First step was to develop a Deep Learning dataset, which was developed gradually. The final version of the dataset consisted of 20GB. The final steps was the development of the deep learning model.
+
 1. Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/dataset.md)
 2. Create annotations
 	1. Rasterize the [levee network](https://doi.org/10.58132/MGOHM8) created for the purpose of this work - [code](https://github.com/nazarb/2025_levees_DL/blob/b1e94674462cdf34197fe3e1c8e231359777e31f/Pre_processing/1.%20Labels%20-%20convert%20lines%20to%20raster.ipynb)
