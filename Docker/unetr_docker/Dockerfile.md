@@ -71,7 +71,12 @@ sudo docker
 ```
 ## Libraries used to create the dataset
 
-```
+The dataset has been created independently from the main workflow line using separate virtual environment in Anaconda utilising Python 3.9
 
+
+```
+conda create --name unet gdal python==3.9
+pip install geotile
+pip install albumentations 
 ```
 
