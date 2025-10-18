@@ -32,3 +32,48 @@ The code for creating the composite consist of several parts
 - MSRM 5 - Multi-Scale Relief Model (MSRM) - fmin 0, fmax 960, x 2 [[7]](#7)[[2]](#2)
 - MSRM 6 - Multi-Scale Relief Model (MSRM) - fmin 0, fmax 1920, x 2 [[7]](#7)[[2]](#2)
 - MSRM 7 - Multi-Scale Relief Model (MSRM) - fmin 0, fmax 3840, x 2 [[7]](#7)[[2]](#2)
+
+# References
+<a id="1">[1]</a> 
+Orengo, Hector A., and Cameron A. Petrie. (2017). 
+Large-scale, multi-temporal remote sensing of palaeo-river networks: A case study from Northwest India and its implications for the Indus civilisation.
+Remote Sensing, 9(7), 735.
+http://www.mdpi.com/2072-4292/9/7/735
+https://github.com/horengo/Orengo_Petrie_2017_RS
+
+<a id="2">[2]</a> 
+Buławka, Nazarij, and Hector A. Orengo. (2024).
+Application of multi-temporal and multisource satellite imagery in the study of irrigated landscapes in arid climates.
+Remote Sensing, 16(11), 1997.
+https://doi.org/10.3390/rs16111997
+
+<a id="3">[3]</a> 
+Garcia-Molsosa, Arnau, Hector A. Orengo, and Cameron A. Petrie. (2023).
+Reconstructing long-term settlement histories on complex alluvial floodplains by integrating historical map analysis and remote-sensing: an archaeological analysis of the landscape of the Indus River Basin.
+Heritage Science, 11(1), 141.
+https://heritagesciencejournal.springeropen.com/articles/10.1186/s40494-023-00985-6
+
+<a id="4">[4]</a> 
+Jin, Suming, and Steven A. Sader. (2005). 
+Comparison of Time Series Tasseled Cap Wetness and the Normalized Difference Moisture Index in Detecting Forest Disturbances.
+Remote Sensing of Environment, 94(3), 364–72. 
+https://doi.org/10.1016/j.rse.2004.10.012.
+
+<a id="5">[5]</a> 
+Gao, Bo-cai. (1996). 
+NDWI—A Normalized Difference Water Index for Remote Sensing of Vegetation Liquid Water from Space.
+Remote Sensing of Environment, 58(3), 257–66. 
+https://doi.org/10.1016/S0034-4257(96)00067-3.
+
+<a id="6">[6]</a> 
+Ji, Lei, Li Zhang, and Bruce Wylie. (2009). 
+Analysis of Dynamic Thresholds for the Normalized Difference Water Index. 
+Photogrammetric Engineering & Remote Sensing 75(11): 1307–17. 
+https://doi.org/10.14358/PERS.75.11.1307.
+
+<a id="7">[7]</a> 
+Orengo, Hector A., and Cameron A. Petrie. (2018). 
+Multi‐scale Relief Model (MSRM): A New Algorithm for the Visualization of Subtle Topographic Change of Variable Size in Digital Elevation Models/
+Earth Surface Processes and Landforms, 43(6), 1361–69. 
+https://doi.org/10.1002/esp.4317.
+https://github.com/horengo/Orengo_Petrie_2018_MSRM.
