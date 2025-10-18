@@ -26,10 +26,13 @@ Clone the repository
 git clone https://github.com/nazarb/2025_levees_DL.git
 cd 2025_levees_DL
 cd Docker\unetr_docker
+sudo docker build -t unetr .
+sudo docker run --gpus all -it --name unetr -v /home/{user}/Workspace:/Workspace -p 8888:8888 -p 9453:9453 --shm-size=32g unetr
 ```
-Install [Docker](https://docs.docker.com/engine/install/) on your local machine
+You must change the location of the Workspace on your local machine ({user}).
+The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md).
+More information how to install [Docker](https://docs.docker.com/engine/install/) is provided on the Docker website.
 
-The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md)
    
 ## Workflow
 
