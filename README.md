@@ -13,7 +13,14 @@ The results highlight both the challenges and promise of deep learning in archae
 
 
 ## Docker
-The docker used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md)
+
+Clone the repository
+```
+git clone https://github.com/nazarb/2025_levees_DL.git
+cd 2025_levees_DL
+```
+
+The docker and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md)
 
 ## Demo of the model include:
 1. Initiate libraries
@@ -22,6 +29,7 @@ The docker used to run all the scripts is available [here](https://github.com/na
 4. Postprocessing
    
 ## Workflow
+
 ### Pre-processing
 1. Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/dataset.md)
 2. Create annotations
