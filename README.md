@@ -15,13 +15,20 @@ The results highlight both the challenges and promise of deep learning in archae
 ## Docker
 The docker used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Docker/unetr_docker/Dockerfile.md)
 
+##
+Demo of the model include:
+1. Initiate libraries
+2. Download raw data (utilize [Copernicus GLO30](https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM) and the trained [model](https://danebadawcze.uw.edu.pl/file.xhtml?fileId=17758&version=1.0)
+3. Predict the the levees using Swin UNETR model
+4. Postprocessing
+   
 ## Workflow
 ### Pre-processing
 1. Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/dataset.md)
 2. Create annotations
 	1. Rasterize the [levee network](https://doi.org/10.58132/MGOHM8) created for the purpose of this work - [code](https://github.com/nazarb/2025_levees_DL/blob/b1e94674462cdf34197fe3e1c8e231359777e31f/Pre_processing/1.%20Labels%20-%20convert%20lines%20to%20raster.ipynb)
-	2. Clip (QGIS 3.22.11)
-	3. Adjust pixels in multisource raster and annotations (QGIS 3.22.11)
+	2. Clip (QGIS 3.28.3)
+	3. Adjust pixels in multisource raster and annotations (QGIS 3.28.3)
 3. Devide the images and annotations into tiles of 96x96 pixels - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/2.%20Split%20into%20tiles.ipynb)
 4. Create JSON file with structure of the dataset
 	1. Create JSON for one or all rasters - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/3.%20Create%20a%20structure%20of%20the%20dataset%20in%20JSON.ipynb)
