@@ -28,7 +28,7 @@ git clone https://github.com/nazarb/2025_levees_DL.
 
 ```
 cd 2025_levees_DL
-cd Docker\unetr_docker
+cd Setup\unetr_docker
 
 ```
 3. Build the Docker using the following command:
