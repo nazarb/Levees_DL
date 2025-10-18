@@ -52,9 +52,7 @@ The selection phase of the training included separate sets od code for training 
 *The code used in this stage is available using following [link](https://github.com/nazarb/2025_levees_DL/blob/main/Swin_UNETR/Train.ipynb)*
 
 ### Predict
-*The code used in this stage is available using following [link](https://github.com/nazarb/2025_levees_DL/tree/main/Predict)*
-
-The code use for prediction consist of several steps
+The [code](https://github.com/nazarb/2025_levees_DL/tree/main/Predict) use for prediction consist of several steps
 1. Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/Dataset_creation_GEE_code)
 2. Run the detection code
 	1. Select raster
@@ -63,11 +61,9 @@ The code use for prediction consist of several steps
 	4. Convert predictions to TIF and merge them
     
 #### Post-processing
-*The code used in this stage is available using following [link](https://github.com/nazarb/2025_levees_DL/tree/main/Post_processing)*
-
-Post-processing include:
-	1. filter by size (the filter excludes small features: min_area = 350; connectivity=8)
-	2. closing - opencv-python (cv2.MORPH_CLOSE)(kernel = np.ones((7,7),np.uint8))
+Post-processing [code](https://github.com/nazarb/2025_levees_DL/blob/main/Post_processing/Post-processing.ipynb) include:
+	1. Filter by size (the filter excludes small features) - opencv-python (connectedComponentsWithStats())(min_area = 350; connectivity=8)
+	2. Closing - opencv-python (Closing)(kernel = np.ones((7,7),np.uint8))
 
 
 ## Citation
