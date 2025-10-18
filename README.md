@@ -37,6 +37,7 @@ More information how to install [Docker](https://docs.docker.com/engine/install/
 ## Workflow
 
 ### Pre-processing
+The project constisted of two steps. First step was to develop a Deep Learning dataset. The final version of the dataset consisted of 20GB.
 1. Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/dataset.md)
 2. Create annotations
 	1. Rasterize the [levee network](https://doi.org/10.58132/MGOHM8) created for the purpose of this work - [code](https://github.com/nazarb/2025_levees_DL/blob/b1e94674462cdf34197fe3e1c8e231359777e31f/Pre_processing/1.%20Labels%20-%20convert%20lines%20to%20raster.ipynb)
