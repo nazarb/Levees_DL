@@ -62,40 +62,6 @@ The selection phase of the training included separate sets od code for training 
 #### The final model
 
 The final version of the model utilized [Swin UNETR](https://github.com/nazarb/2025_levees_DL/blob/main/Swin_UNETR/Swin_UNETR.md)*
-- img_size=(96, 96),
-- in_channels=48,
-- out_channels=1,  # Use the passed `num_classes`
-- use_checkpoint=True,
-- feature_size=48,
-- depths=(3, 9, 18, 3),
-- num_heads=(4, 8, 16, 32),
-- drop_rate=0.1,  # Added dropout
-- attn_drop_rate=0.1,
-- dropout_path_rate=0.2,
-- spatial_dims=2
-
-### Train
-The training of the model parametres:
-- Dataset: dataset E (see Publication)
-- Image size: 96x96x48
-- Epochs: 500
-- Early Stopping: False
-- Optimizer: [RAdam](https://docs.pytorch.org/docs/stable/generated/torch.optim.RAdam.html)
-- Loss function: Dice Loss
-- Initial learning Rate:2e-4
-- Weight Decay: 5e-6
-- Scheduler for Learning Rate: True
-```
-    lr_scheduler = ReduceLROnPlateau(
-        optimizer, 
-        mode='min',      # Reduce learning rate (lr) when metric stops improving
-        factor=0.5,      # Reduce lr by 50%
-        patience=10,     # Number of epochs with no improvement after which lr will be reduced
-        verbose=True,    # Print a message when lr changes
-        min_lr=1e-6      # Minimum learning rate
-    )
-    scaler = torch.cuda.amp.GradScaler()
-```
 
 The code used in this stage is available using following [link](https://github.com/nazarb/2025_levees_DL/blob/main/Swin_UNETR/Train.ipynb)*
 
