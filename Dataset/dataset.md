@@ -33,6 +33,10 @@ The code for creating the composite consist of several parts
 - MSRM 6 - Multi-Scale Relief Model (MSRM) - fmin 30 (raster resolution), fmax 1920, x 2 [[7]](#7)[[2]](#2)
 - MSRM 7 - Multi-Scale Relief Model (MSRM) - fmin 30 (raster resolution), fmax 3840, x 2 [[7]](#7)[[2]](#2)
 
+The band list is available using this [link](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/band_list.csv)
+
+The data split is given in the [JSON file](https://raw.githubusercontent.com/nazarb/2025_levees_DL/refs/heads/main/Dataset/dataset_bin.json)
+
 # References
 <a id="1">[1]</a> 
 Orengo, Hector A., and Cameron A. Petrie. (2017). 
