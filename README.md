@@ -23,6 +23,8 @@ The results highlight both the challenges and promise of deep learning in archae
    
 ## Full project workflow
 
+![Model](https://github.com/nazarb/2025_levees_DL/blob/0b6cc1e78e79003e468d97d04d010ed22d7cb4db/images/Diagram.png)
+
 ### Setup
 
 The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Setup/Setup.md).
