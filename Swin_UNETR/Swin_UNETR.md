@@ -21,7 +21,7 @@ The final version of the [Swin UNETR](https://github.com/nazarb/2025_levees_DL/t
 
 
 ### Train
-The training of the model parametres:
+The training parametres of the model :
 - Dataset: dataset E (see Publication)
 - Image size: 96x96x48
 - Epochs: 500
