@@ -46,7 +46,7 @@ The project constisted of two steps. First step was to develop a Deep Learning d
    2. Shuffle the tiles within collections used to train, validate and test the model (with a data leakage prevention mechanism) - [code](https://github.com/nazarb/2025_levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4C.%20JSON%20shuffle.ipynb)
    3. Check if the dataset does not have data leakage between train, validation and testing - [code](https://github.com/nazarb/2025_levees_DL/blob/main/Pre_processing/4.%20Albumentations/4D.%20JSON_checker.ipynb)
   
-The [dataset](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/dataset.md) structure is provided with following [link](https://raw.githubusercontent.com/nazarb/2025_levees_DL/refs/heads/main/Dataset/dataset_bin.json)
+The dataset structure is provided with following [link](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/dataset.md)
 
 ### Train and validate the model 
 The research utilizes the Unet, Attention Unet and Swin UNETR developed by [MONAI](https://github.com/Project-MONAI/MONAI)
