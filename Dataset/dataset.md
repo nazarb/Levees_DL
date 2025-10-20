@@ -25,13 +25,13 @@ The code for creating the composite consist of several parts
 - Standard deviation of SMT calculated from VH band od Sentinel-1 (this study)
 - mean value of each band of Sentinel-2 calculated in dry season [[2]](#2)[[3]](#3)
 - mean value of Misra Soil Brightness Index (MSBI) calculated in dry season - Sentinel-2
-- MSRM 1 - Multi-Scale Relief Model (MSRM) - fmin 0, fmax 60, x 2 [[7]](#7)[[2]](#2)
-- MSRM 2 - Multi-Scale Relief Model (MSRM) - fmin 0, fmax 120, x 2 [[7]](#7)[[2]](#2)
-- MSRM 3 - Multi-Scale Relief Model (MSRM) - fmin 0, fmax 240, x 2 [[7]](#7)[[2]](#2)
-- MSRM 4 - Multi-Scale Relief Model (MSRM) - fmin 0, fmax 480, x 2 [[7]](#7)[[2]](#2)
-- MSRM 5 - Multi-Scale Relief Model (MSRM) - fmin 0, fmax 960, x 2 [[7]](#7)[[2]](#2)
-- MSRM 6 - Multi-Scale Relief Model (MSRM) - fmin 0, fmax 1920, x 2 [[7]](#7)[[2]](#2)
-- MSRM 7 - Multi-Scale Relief Model (MSRM) - fmin 0, fmax 3840, x 2 [[7]](#7)[[2]](#2)
+- MSRM 1 - Multi-Scale Relief Model (MSRM) - fmin 30 (raster resolution), fmax 60, x 2 [[7]](#7)[[2]](#2)
+- MSRM 2 - Multi-Scale Relief Model (MSRM) - fmin 30 (raster resolution), fmax 120, x 2 [[7]](#7)[[2]](#2)
+- MSRM 3 - Multi-Scale Relief Model (MSRM) - fmin 30 (raster resolution), fmax 240, x 2 [[7]](#7)[[2]](#2)
+- MSRM 4 - Multi-Scale Relief Model (MSRM) - fmin 30 (raster resolution), fmax 480, x 2 [[7]](#7)[[2]](#2)
+- MSRM 5 - Multi-Scale Relief Model (MSRM) - fmin 30 (raster resolution), fmax 960, x 2 [[7]](#7)[[2]](#2)
+- MSRM 6 - Multi-Scale Relief Model (MSRM) - fmin 30 (raster resolution), fmax 1920, x 2 [[7]](#7)[[2]](#2)
+- MSRM 7 - Multi-Scale Relief Model (MSRM) - fmin 30 (raster resolution), fmax 3840, x 2 [[7]](#7)[[2]](#2)
 
 # References
 <a id="1">[1]</a> 
