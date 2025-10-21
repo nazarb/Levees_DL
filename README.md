@@ -54,9 +54,9 @@ The dataset structure is provided with following [link](https://github.com/nazar
 The research utilizes the Unet, Attention Unet and Swin UNETR developed by [MONAI](https://github.com/Project-MONAI/MONAI)
 #### Model selection part
 The selection phase of the training included separate sets od code for training Unet, Attention Unet and Swin UNETR [models](https://github.com/nazarb/2025_levees_DL/blob/main/Model_selection/Model_list.md)
-- [Unet](https://github.com/nazarb/2025_levees_DL/blob/main/Model_selection/MONAI_UNET_48_aug.ipynb)
-- [Attention Unet](https://github.com/nazarb/2025_levees_DL/blob/main/Model_selection/MONAI_Att_UNET_N48_aug.ipynb)
-- [Swin UNETR](https://github.com/nazarb/2025_levees_DL/blob/main/Model_selection/MONAI_SWIN_UNETR_N48_aug.ipynb)
+- Unet
+- Attention Unet
+- Swin UNETR
 #### The final model
 
 The final version of the model utilized [Swin UNETR](https://github.com/nazarb/2025_levees_DL/blob/main/Swin_UNETR/Swin_UNETR.md)
