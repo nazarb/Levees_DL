@@ -21,6 +21,7 @@ pip install tqdm
 - geopandas 1.0.1
 - matplotlib 3.9.4
 - tqdm 4.67.1
+- pillow 11.3.0
 
 
 # Docker file
