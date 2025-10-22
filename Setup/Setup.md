@@ -1,5 +1,7 @@
 # Libraries used to create the dataset
 
+# Anaconda
+## Create manually
 The dataset has been created independently from the main workflow line using separate virtual environment in Anaconda utilising Python 3.9
 
 
@@ -12,11 +14,22 @@ pip install torch
 pip install matplotlib
 pip install tqdm
 ```
-Use the environment.yml
+## Use the environment.yml
 ```
 conda env create -f environment.yml
 
 ```
+
+## Use Pip
+
+```
+conda create --name tiles python=3.9 gdal=3.6.2
+conda activate tiles
+pip install -r requirements.txt
+
+```
+## Libraries
+
 - gdal 3.6.2
 - geotile 1.1.0
 - albumentations 2.0.8
