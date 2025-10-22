@@ -19,6 +19,7 @@ pip install tqm
 - torch  2.8.0
 - rasterio 1.4.3
 - geopandas 1.0.1
+- matplotlib 3.9.4
 
 
 # Docker file
