@@ -15,6 +15,8 @@ pip install torch
 - albumentations 2.0.8
 - jupyter 1.1.1
 - torch  2.8.0
+- rasterio 1.4.3
+
 
 # Docker file
 
