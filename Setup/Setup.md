@@ -9,6 +9,8 @@ pip install geotile
 pip install albumentations
 pip install jupyter
 pip install torch
+pip install matplotlib
+pip install tqm
 ```
 - gdal 3.6.2
 - geotile 1.1.0
