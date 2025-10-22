@@ -16,6 +16,7 @@ pip install torch
 - jupyter 1.1.1
 - torch  2.8.0
 - rasterio 1.4.3
+- geopandas 1.0.1
 
 
 # Docker file
