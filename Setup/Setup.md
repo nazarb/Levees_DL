@@ -10,11 +10,11 @@ pip install albumentations
 pip install jupyter
 pip install torch
 ```
-gdal 3.6.2
-geotile 1.1.0
-albumentations 2.0.8
-jupyter 1.1.1
-torch  2.8.0
+- gdal 3.6.2
+- geotile 1.1.0
+- albumentations 2.0.8
+- jupyter 1.1.1
+- torch  2.8.0
 
 # Docker file
 
