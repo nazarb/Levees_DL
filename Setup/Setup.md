@@ -12,6 +12,11 @@ pip install torch
 pip install matplotlib
 pip install tqdm
 ```
+Use the environment.yml
+```
+conda env create -f environment.yml
+
+```
 - gdal 3.6.2
 - geotile 1.1.0
 - albumentations 2.0.8
