@@ -8,6 +8,7 @@ conda create --name tiles gdal python==3.9
 pip install geotile
 pip install albumentations
 pip install jupyter
+pip install torch
 ```
 
 
