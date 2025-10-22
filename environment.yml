@@ -1,0 +1,18 @@
+name: tiles
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - gdal=3.6.2
+  - rasterio=1.4.3
+  - geopandas=1.0.1
+  - pip
+  - pip:
+      - geotile==1.1.0
+      - albumentations==2.0.8
+      - jupyter==1.1.1
+      - torch==2.8.0
+      - matplotlib==3.9.4
+      - tqdm==4.67.1
+      - pillow==11.3.0
