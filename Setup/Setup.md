@@ -10,7 +10,7 @@ pip install albumentations
 pip install jupyter
 pip install torch
 pip install matplotlib
-pip install tqm
+pip install tqdm
 ```
 - gdal 3.6.2
 - geotile 1.1.0
@@ -20,6 +20,7 @@ pip install tqm
 - rasterio 1.4.3
 - geopandas 1.0.1
 - matplotlib 3.9.4
+- tqdm 4.67.1
 
 
 # Docker file
