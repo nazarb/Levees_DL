@@ -12,9 +12,11 @@ Results demonstrate that Swin UNETR consistently outperformed other models, part
 The results highlight both the challenges and promise of deep learning in archaeological remote sensing. Automated predictions cannot yet replace interpretative digitisation, but they provide reproducible, standardised, and scalable outputs that can accelerate archaeological mapping and support regional-scale analysis. By leveraging multitemporal, multisource datasets and advanced AI architectures, this study demonstrates a pathway towards reconstructing irrigation systems of different historical periods and landscapes. The approach opens new possibilities for documenting, preserving, and interpreting water-management legacies in some of the world’s most significant ancient landscapes. 
 
 
-## Demo of the model include:
+## Levee detection demo 
 
 [Open demo](https://github.com/nazarb/2025_levees_DL/blob/main/Levee_detection_Swin_UNETR_demo.ipynb)
+
+Demo of the model includes:
 
 1. Initiate libraries
 2. Download raw data (utilize [Copernicus GLO30](https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM) and the trained [model](https://danebadawcze.uw.edu.pl/file.xhtml?fileId=17758&version=1.0)
