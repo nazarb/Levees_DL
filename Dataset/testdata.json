@@ -1,0 +1,25 @@
+{
+  "sectors": {
+    "CFE_a": {
+      "id": "CFE_a",
+      "file_to_detect": "CFE_a_selected_L5_S2_S1_MSRM_PCA_GLO_N48.tif",
+      "file_mg_link": "https://mega.nz/file/E9gBCCjR#UCDklOgOVOwQ0hRAIy5pvAdX9Y-VLBQktDlsrj4R1Ms",
+      "reference_file": "CFE_a_levee_reference.tif",
+      "reference_mg_link": "https://mega.nz/file/5txRRQiZ#dDRqdI4F695r7yG465W5KIISVdQ1Iw2O8EWK2BIdoFs"
+    },
+    "CFE_c": {
+      "id": "CFE_c",
+      "file_to_detect": "CFE_c_selected_L5_S2_S1_MSRM_PCA_GLO_N48.tif",
+      "file_mg_link": "https://mega.nz/file/wgAkHC7S#w8l0ltX5te4UL92COkHOuVe3gUEsxT3PjzgL3dOc5Pk",
+      "reference_file": "CFE_c_levee_reference.tif",
+      "reference_mg_link": "https://mega.nz/file/18In1aiD#KWAe5VIeaqMM3HwVD3A_98hsha8aEivoTtYkyYoK3fQ"
+    }
+  },
+  "metadata": {
+    "description": "Archaeological levee detection dataset",
+    "base_path": "Rasters",
+    "reference_folder": "Reference",
+    "created": "2026-02-01",
+    "version": "1.0"
+  }
+}
