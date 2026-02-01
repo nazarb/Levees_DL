@@ -4,6 +4,7 @@ from .files import get_filename_without_extension, create_tfw_file, read_tfw_coo
 from .inference import predict_and_save
 from .datasets import NumpyDataset, load_dataset_json, prepare_test_loader
 from .metrics import compare_rasters, compare_vectors
+from .data_manager import MegaDownloader
 
 __all__ = [
     "lines_to_raster",
@@ -25,4 +26,5 @@ __all__ = [
     "load_dataset_json",
     "prepare_test_loader",
     "compare_rasters",
+    "MegaDownloader",
 ]
