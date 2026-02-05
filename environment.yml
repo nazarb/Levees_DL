@@ -16,3 +16,6 @@ dependencies:
       - matplotlib==3.9.4
       - tqdm==4.67.1
       - pillow==11.3.0
+      - leafmap==0.59
+      - localtileserver==0.10
+      - sknw==0.15
