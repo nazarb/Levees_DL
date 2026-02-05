@@ -1025,3 +1025,305 @@ def add_directionality(edges, slope_raster_path, convention, is_downhill):
             else:
                 e["from"] = int(e["v"])
                 e["to"] = int(e["u"])
+
+
+# ============================================================================
+# MAIN PIPELINE FUNCTION
+# ============================================================================
+
+def raster_to_network(
+    in_skeleton,
+    out_gpkg,
+    simplify_tol=None,
+    smooth_iters=2,
+    smooth_then_simplify=True,
+    bridge_endpoints=True,
+    max_gap_dist=900.0,
+    max_angle_deg=65.0,
+    direction_step=3,
+    max_bridges_per_endpoint=1,
+    max_bridge_rounds=2,
+    bridge_to_vertices=True,
+    max_snap_dist=600.0,
+    max_snap_angle_deg=45.0,
+    max_target_angle_deg=90.0,
+    max_vertex_snaps_per_endpoint=1,
+    vertex_candidate_stride=1,
+    slope_dir_raster=None,
+    slope_dir_convention="cw_from_north",
+    slope_dir_is_downhill=True,
+    cost_raster=None,
+    cost_nodata_to_nan=True,
+    cost_sampling_step=None,
+    cost_unique_cells=True,
+    join_parallel_lines=False,
+    parallel_max_dist=40.0,
+    parallel_max_angle_deg=15.0,
+    parallel_min_length=50.0,
+    max_parallel_connectors=200,
+):
+    """
+    Transform a filtered skeleton raster (0/1) into a network with:
+      - endpoint↔endpoint gap bridging (angle + distance)
+      - endpoint→vertex snapping (attach dangling endpoints to nearby line vertices)
+      - degree-2 contraction (analysis network)
+      - optional parallel/near-parallel connector creation (with proper node insertion)
+      - optional directionality from a slope-direction/aspect raster
+      - optional per-edge cost extraction from a cost raster (sum of traversed cells)
+    
+    Parameters
+    ----------
+    in_skeleton : str
+        Path to input skeleton raster (binary 0/1)
+    out_gpkg : str
+        Path to output GeoPackage file (will contain 'nodes' and 'edges' layers)
+    simplify_tol : float, optional
+        Simplification tolerance in map units. If None, auto ~ 0.5 pixel
+    smooth_iters : int, default=2
+        Number of Chaikin smoothing iterations (0 disables)
+    smooth_then_simplify : bool, default=True
+        Re-simplify after smoothing
+    bridge_endpoints : bool, default=True
+        Enable endpoint-to-endpoint bridging
+    max_gap_dist : float, default=900.0
+        Maximum distance to bridge endpoints
+    max_angle_deg : float, default=65.0
+        Endpoints must face each other within this angle
+    direction_step : int, default=3
+        Vertices ahead to estimate local direction
+    max_bridges_per_endpoint : int, default=1
+        Maximum bridges per endpoint
+    max_bridge_rounds : int, default=2
+        Run bridging in multiple rounds
+    bridge_to_vertices : bool, default=True
+        Enable endpoint-to-vertex snapping
+    max_snap_dist : float, default=600.0
+        Maximum distance endpoint->vertex
+    max_snap_angle_deg : float, default=45.0
+        Endpoint extension must align within this angle
+    max_target_angle_deg : float, default=90.0
+        How "clean" the attachment is to the target line at that vertex
+    max_vertex_snaps_per_endpoint : int, default=1
+        Maximum vertex snaps per endpoint
+    vertex_candidate_stride : int, default=1
+        Check every vertex (1), or subsample if huge dataset
+    slope_dir_raster : str, optional
+        Path to slope/aspect/flow-direction raster for directionality
+    slope_dir_convention : str, default="cw_from_north"
+        "cw_from_north" or "ccw_from_east"
+    slope_dir_is_downhill : bool, default=True
+        True if raster indicates downhill direction
+    cost_raster : str, optional
+        Path to cost raster for per-edge cost extraction
+    cost_nodata_to_nan : bool, default=True
+        Convert nodata to NaN in cost calculations
+    cost_sampling_step : float, optional
+        Spacing in map units for sampling points. If None, ~0.5 pixel
+    cost_unique_cells : bool, default=True
+        Sum unique traversed cells (recommended)
+    join_parallel_lines : bool, default=False
+        Join closely running parallel lines
+    parallel_max_dist : float, default=40.0
+        Max separation between lines to consider connecting
+    parallel_max_angle_deg : float, default=15.0
+        Max angular difference between overall directions (mod 180)
+    parallel_min_length : float, default=50.0
+        Ignore very short edges
+    max_parallel_connectors : int, default=200
+        Safety cap for parallel connectors
+    
+    Returns
+    -------
+    dict
+        Dictionary with keys: 'nodes_gdf', 'edges_gdf', 'stats' (statistics dict)
+    """
+    if sknw is None:
+        raise ImportError("Install sknw with: pip install sknw")
+    if gpd is None:
+        raise ImportError("Install geopandas + shapely with: pip install geopandas shapely")
+    
+    # ---- 1) Read skeleton raster ----
+    with rasterio.open(in_skeleton) as src:
+        skel = src.read(1, masked=True)
+        transform = src.transform
+        crs = src.crs
+    
+    skel_bool = (np.asarray(skel.filled(0) if np.ma.isMaskedArray(skel) else skel) > 0).astype(np.uint8)
+    
+    # ---- 2) Build sknw graph from skeleton ----
+    G = sknw.build_sknw(skel_bool, multi=True)
+    
+    # ---- 3) Auto simplify tolerance if not provided ----
+    if simplify_tol is None:
+        px = pixel_size_from_transform(transform)
+        simplify_tol = 0.5 * px  # good default for staircase reduction
+    
+    # ---- 4) Export nodes + edges (split at junctions) ----
+    nodes_gdf, edges_gdf = build_nodes_edges_gdfs(G, transform, crs, simplify_tol, smooth_iters, smooth_then_simplify)
+    
+    # ---- 5) Contract degree-2 nodes to create analysis network ----
+    nodes2_gdf, edges2_gdf = contract_degree2_graph(G, nodes_gdf, edges_gdf)
+    
+    # ---- 6) Convert to mutable in-memory network (dict/list) ----
+    nodes = build_node_dict(nodes2_gdf)
+    edges = []
+    for r in edges2_gdf.itertuples(index=False):
+        edges.append({
+            "u": int(r.u),
+            "v": int(r.v),
+            "n_segs": int(getattr(r, "n_segs", 1)),
+            "length": float(r.length),
+            "is_bridge": bool(getattr(r, "is_bridge", False)),
+            "bridge_type": str(getattr(r, "bridge_type", "")),
+            "geometry": r.geometry
+        })
+    
+    next_node_id = int(max(nodes.keys())) + 1 if nodes else 0
+    
+    # ---- 7) Optional costs on current edges ----
+    cost_ctx = None
+    if cost_raster:
+        with rasterio.open(cost_raster) as cs:
+            carr = cs.read(1)
+            cnod = cs.nodata
+            ctr = cs.transform
+            if cost_sampling_step is None:
+                cpx = pixel_size_from_transform(ctr)
+                cstep = 0.5 * cpx
+            else:
+                cstep = float(cost_sampling_step)
+            
+            cost_ctx = {
+                "arr": carr,
+                "transform": ctr,
+                "nodata": cnod,
+                "step": float(cstep),
+                "nodata_to_nan": bool(cost_nodata_to_nan),
+                "unique_cells": bool(cost_unique_cells),
+            }
+        
+        for e in edges:
+            e["cost_sum"] = cost_sum_along_line(
+                e["geometry"], cost_ctx["arr"], cost_ctx["transform"], cost_ctx["nodata"], cost_ctx["step"],
+                nodata_to_nan=cost_ctx["nodata_to_nan"], unique_cells=cost_ctx["unique_cells"]
+            )
+    
+    # ---- 8) Post-contraction gap filling (multiple rounds) ----
+    total_ep_bridges = 0
+    total_vertex_snaps = 0
+    
+    for round_i in range(int(max_bridge_rounds)):
+        # endpoint↔endpoint bridging
+        if bridge_endpoints:
+            added = bridge_endpoints_round(
+                nodes, edges,
+                max_gap_dist=max_gap_dist,
+                max_angle_deg=max_angle_deg,
+                direction_step=direction_step,
+                max_bridges_per_endpoint=max_bridges_per_endpoint,
+                bridge_type=f"endpoint_endpoint_r{round_i+1}"
+            )
+            total_ep_bridges += added
+            
+            # compute costs for newly added bridge edges
+            if cost_ctx is not None and added > 0:
+                for e in edges[-added:]:
+                    e["cost_sum"] = cost_sum_along_line(
+                        e["geometry"], cost_ctx["arr"], cost_ctx["transform"], cost_ctx["nodata"], cost_ctx["step"],
+                        nodata_to_nan=cost_ctx["nodata_to_nan"], unique_cells=cost_ctx["unique_cells"]
+                    )
+        
+        # endpoint→vertex snapping
+        if bridge_to_vertices:
+            added_vs, next_node_id = snap_endpoints_to_vertices_round(
+                nodes, edges, next_node_id, cost_ctx,
+                max_snap_dist=max_snap_dist,
+                max_snap_angle_deg=max_snap_angle_deg,
+                max_target_angle_deg=max_target_angle_deg,
+                direction_step=direction_step,
+                max_snaps_per_endpoint=max_vertex_snaps_per_endpoint,
+                vertex_stride=vertex_candidate_stride
+            )
+            total_vertex_snaps += added_vs
+    
+    # ---- 9) Optional directionality on final edges ----
+    if slope_dir_raster:
+        add_directionality(
+            edges,
+            slope_raster_path=slope_dir_raster,
+            convention=slope_dir_convention,
+            is_downhill=slope_dir_is_downhill
+        )
+    
+    # ---- 10) Build final GeoDataFrames and export ----
+    deg = recompute_node_degrees(nodes, edges)
+    
+    node_rows = []
+    for nid, xy in nodes.items():
+        node_rows.append({
+            "node": int(nid),
+            "degree": int(deg.get(int(nid), 0)),
+            "x": float(xy[0]),
+            "y": float(xy[1]),
+            "geometry": Point(float(xy[0]), float(xy[1]))
+        })
+    nodes_out = gpd.GeoDataFrame(node_rows, geometry="geometry", crs=crs)
+    
+    edge_rows = []
+    for i, e in enumerate(edges):
+        row = {
+            "edge_id": int(i),
+            "u": int(e["u"]),
+            "v": int(e["v"]),
+            "length": float(e.get("length", e["geometry"].length)),
+            "n_segs": int(e.get("n_segs", 1)),
+            "is_bridge": bool(e.get("is_bridge", False)),
+            "bridge_type": str(e.get("bridge_type", "")),
+            "geometry": e["geometry"]
+        }
+        if "cost_sum" in e:
+            row["cost_sum"] = float(e["cost_sum"])
+        if "slope_dir_deg" in e:
+            row["slope_dir_deg"] = float(e["slope_dir_deg"]) if np.isfinite(e["slope_dir_deg"]) else np.nan
+        if "from" in e and "to" in e:
+            row["from"] = int(e["from"])
+            row["to"] = int(e["to"])
+        edge_rows.append(row)
+    
+    edges_out = gpd.GeoDataFrame(edge_rows, geometry="geometry", crs=crs)
+    
+    # Write output
+    if os.path.exists(out_gpkg):
+        os.remove(out_gpkg)
+    nodes_out.to_file(out_gpkg, layer="nodes", driver="GPKG")
+    edges_out.to_file(out_gpkg, layer="edges", driver="GPKG")
+    
+    # Statistics
+    stats = {
+        "original_nodes": len(nodes_gdf),
+        "original_edges": len(edges_gdf),
+        "contracted_nodes": len(nodes2_gdf),
+        "contracted_edges": len(edges2_gdf),
+        "final_nodes": len(nodes_out),
+        "final_edges": len(edges_out),
+        "endpoint_bridges": total_ep_bridges,
+        "vertex_snaps": total_vertex_snaps,
+        "simplify_tol": simplify_tol,
+        "smooth_iters": smooth_iters,
+    }
+    
+    print(f"Wrote network to: {out_gpkg} (layers: nodes, edges)")
+    print(f"Original sknw export: nodes={len(nodes_gdf)} edges={len(edges_gdf)}")
+    print(f"Contracted:          nodes={len(nodes2_gdf)} edges={len(edges2_gdf)}")
+    print(f"Final:              nodes={len(nodes_out)} edges={len(edges_out)}")
+    print(f"simplify_tol={simplify_tol:.4g} smooth_iters={smooth_iters}")
+    if cost_raster:
+        print(f"Costs enabled: cost_sum (unique_cells={cost_unique_cells}, step={cost_ctx['step']:.4g}, nodata_to_nan={cost_nodata_to_nan})")
+    if slope_dir_raster:
+        print(f"Directionality enabled: convention={slope_dir_convention}, slope_dir_is_downhill={slope_dir_is_downhill} -> fields: slope_dir_deg, from, to")
+    
+    return {
+        "nodes_gdf": nodes_out,
+        "edges_gdf": edges_out,
+        "stats": stats
+    }
