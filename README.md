@@ -14,7 +14,7 @@ The results highlight both the challenges and promise of deep learning in archae
 
 ## Levee detection demo 
 
-[Open demo](https://github.com/nazarb/2025_levees_DL/blob/main/Levee_detection_Swin_UNETR_demo.ipynb)
+[Open demo](https://github.com/nazarb/Levees_DL/blob/main/Levee_detection_Swin_UNETR_demo_2026.ipynb)
 
 Demo of the model includes:
 
@@ -25,49 +25,49 @@ Demo of the model includes:
    
 ## Full project workflow
 
-![Model](https://github.com/nazarb/2025_levees_DL/blob/0b6cc1e78e79003e468d97d04d010ed22d7cb4db/images/Diagram.png)
+![Model](https://github.com/nazarb/Levees_DL/blob/0b6cc1e78e79003e468d97d04d010ed22d7cb4db/images/Diagram.png)
 
 ### Setup
 
-The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/2025_levees_DL/blob/main/Setup/Setup.md).
+The Docker container and virtual envinronment used to run all the scripts is available [here](https://github.com/nazarb/Levees_DL/blob/main/Setup/Setup.md).
 More information how to install [Docker](https://docs.docker.com/engine/install/) is provided on the Docker website.
 
 ### Pre-processing
 The project constisted of two steps. First step was to develop a Deep Learning dataset, which was developed gradually. The final version of the dataset consisted of 20GB. The final steps was the development of the deep learning model.
 
-1. Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/dataset.md)
+1. Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/Levees_DL/blob/main/Dataset/dataset.md)
 2. Create annotations
-	1. Rasterize the [levee network](https://doi.org/10.58132/MGOHM8) created for the purpose of this work - [code](https://github.com/nazarb/2025_levees_DL/blob/b1e94674462cdf34197fe3e1c8e231359777e31f/Pre_processing/1.%20Labels%20-%20convert%20lines%20to%20raster.ipynb)
+	1. Rasterize the [levee network](https://doi.org/10.58132/MGOHM8) created for the purpose of this work - [code](https://github.com/nazarb/Levees_DL/blob/b1e94674462cdf34197fe3e1c8e231359777e31f/Pre_processing/1.%20Labels%20-%20convert%20lines%20to%20raster.ipynb)
 	2. Clip (QGIS 3.34.13)
 	3. Adjust pixels in multisource raster and annotations (QGIS 3.34.13)
-3. Devide the images and annotations into tiles of 96x96 pixels - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/2.%20Split%20into%20tiles.ipynb)
+3. Devide the images and annotations into tiles of 96x96 pixels - [code](https://github.com/nazarb/Levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/2.%20Split%20into%20tiles.ipynb)
 4. Create JSON file with structure of the dataset
-	1. Create JSON for one or all rasters - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/3.%20Create%20a%20structure%20of%20the%20dataset%20in%20JSON.ipynb)
-	2. Merge JSON files if necessary - [code](https://github.com/nazarb/2025_levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4B1.%20JSON%20merge.ipynb)
-6. Perform augmentations using [albumentations](https://github.com/albumentations-team/albumentations) - [code](https://github.com/nazarb/2025_levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/4.%20Albumentations/augmentation.md)
+	1. Create JSON for one or all rasters - [code](https://github.com/nazarb/Levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/3.%20Create%20a%20structure%20of%20the%20dataset%20in%20JSON.ipynb)
+	2. Merge JSON files if necessary - [code](https://github.com/nazarb/Levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4B1.%20JSON%20merge.ipynb)
+6. Perform augmentations using [albumentations](https://github.com/albumentations-team/albumentations) - [code](https://github.com/nazarb/Levees_DL/blob/0d97b12ec862e5f634016d1b670492f1acc973c1/Pre_processing/4.%20Albumentations/augmentation.md)
 7. Create an augmented dataset
-   1. Append augmented [tiles](https://github.com/nazarb/2025_levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4B2.%20JSON%20append%20augmented.ipynb) to a JSON file 
-   2. Shuffle the tiles within collections used to train, validate and test the model (with a data leakage prevention mechanism) - [code](https://github.com/nazarb/2025_levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4C.%20JSON%20shuffle.ipynb)
-   3. Check if the dataset does not have data leakage between train, validation and testing - [code](https://github.com/nazarb/2025_levees_DL/blob/main/Pre_processing/4.%20Albumentations/4D.%20JSON_checker.ipynb)
+   1. Append augmented [tiles](https://github.com/nazarb/Levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4B2.%20JSON%20append%20augmented.ipynb) to a JSON file 
+   2. Shuffle the tiles within collections used to train, validate and test the model (with a data leakage prevention mechanism) - [code](https://github.com/nazarb/Levees_DL/blob/a258868dad8dd6a6d31f031c691e2708c3124224/Pre_processing/4.%20Albumentations/4C.%20JSON%20shuffle.ipynb)
+   3. Check if the dataset does not have data leakage between train, validation and testing - [code](https://github.com/nazarb/Levees_DL/blob/main/Pre_processing/4.%20Albumentations/4D.%20JSON_checker.ipynb)
   
-The dataset structure is provided with following [link](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/dataset.md)
+The dataset structure is provided with following [link](https://github.com/nazarb/Levees_DL/blob/main/Dataset/dataset.md)
 
 ### Train and validate the model 
 The research utilizes the Unet, Attention Unet and Swin UNETR developed by [MONAI](https://github.com/Project-MONAI/MONAI)
 #### Model selection part
-The selection phase of the training included separate sets od code for training Unet, Attention Unet and Swin UNETR [models](https://github.com/nazarb/2025_levees_DL/blob/main/Model_selection/Model_list.md)
+The selection phase of the training included separate sets od code for training Unet, Attention Unet and Swin UNETR [models](https://github.com/nazarb/Levees_DL/blob/main/Model_selection/Model_list.md)
 - Unet
 - Attention Unet
 - Swin UNETR
 #### The final model
 
-The final version of the model utilized [Swin UNETR](https://github.com/nazarb/2025_levees_DL/blob/main/Swin_UNETR/Swin_UNETR.md)
+The final version of the model utilized [Swin UNETR](https://github.com/nazarb/Levees_DL/blob/main/Swin_UNETR/Swin_UNETR.md)
 
-The code used in this stage is available using following [link](https://github.com/nazarb/2025_levees_DL/blob/main/Swin_UNETR/Train.ipynb)
+The code used in this stage is available using following [link](https://github.com/nazarb/Levees_DL/blob/main/Swin_UNETR/Train.ipynb)
 
 ### Predict
-The [code](https://github.com/nazarb/2025_levees_DL/tree/main/Predict) use for prediction consist of several steps
-1. Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/2025_levees_DL/blob/main/Dataset/Dataset_creation_GEE_code)
+The [code](https://github.com/nazarb/Levees_DL/tree/main/Predict) used for prediction consists of several steps
+1. Calculate the multisource rasters using published Google Earth Engine [code](https://github.com/nazarb/Levees_DL/blob/main/Dataset/Dataset_creation_GEE_code)
 2. Run the detection code
 	1. Select raster
 	2. Convert to NPY
@@ -75,7 +75,7 @@ The [code](https://github.com/nazarb/2025_levees_DL/tree/main/Predict) use for p
 	4. Convert predictions to TIF and merge them
     
 ### Post-processing
-3. Post-processing [code](https://github.com/nazarb/2025_levees_DL/blob/main/Post_processing/Post-processing.ipynb) include:
+3. Post-processing [code](https://github.com/nazarb/Levees_DL/blob/main/Post_processing/Post-processing.ipynb) include:
 	1. Filter by size (the filter excludes small features) - opencv-python ```connectedComponentsWithStats(); min_area = 350; connectivity=8```
 	2. Closing - opencv-python ```Closing; kernel = 7x7```
 
