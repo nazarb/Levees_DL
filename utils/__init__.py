@@ -4,7 +4,15 @@ from .files import get_filename_without_extension, create_tfw_file, read_tfw_coo
 from .inference import predict_and_save
 from .datasets import NumpyDataset, load_dataset_json, prepare_test_loader
 from .metrics import compare_rasters, compare_vectors
-from .data_manager import MegaDownloader
+from .raster_to_network import (
+    skeletonize_raster,
+    filter_connected_components,
+    build_nodes_edges_gdfs,
+    contract_degree2_graph,
+    bridge_endpoints_round,
+    snap_endpoints_to_vertices_round,
+    add_directionality,
+)
 
 __all__ = [
     "lines_to_raster",
@@ -26,5 +34,11 @@ __all__ = [
     "load_dataset_json",
     "prepare_test_loader",
     "compare_rasters",
-    "MegaDownloader",
+    "skeletonize_raster",
+    "filter_connected_components",
+    "build_nodes_edges_gdfs",
+    "contract_degree2_graph",
+    "bridge_endpoints_round",
+    "snap_endpoints_to_vertices_round",
+    "add_directionality",
 ]
